@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 import yt_dlp
 
-TOKEN = '8673459656:AAGgr5lgxFQXN8d92kN-6zmVM3IX0Wncm7Y'
+TOKEN = '8673459656:AAGRDs6jZGMYywElVjeu5U4pCHJRLKnLXNA'
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("أهلاً إبراهيم! أرسل لي رابط فيديو وسأحمله لك فوراً 📥")
@@ -40,3 +40,4 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     app.run_polling()
+
