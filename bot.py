@@ -13,16 +13,17 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if "http" in url:
         msg = await update.message.reply_text("⏳ جاري التحميل... انتظر قليلاً")
         
-        # إعدادات التحميل
-                dl_opts = {
-            'outtmpl': 'video.mp4',
-            'quiet': True,
-            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
+            # إعدادات التحميل
+    dl_opts = {
+        'outtmpl': 'video.mp4',
+        'quiet': True,
+        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
 
-        try:
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
+    try:
+        with yt_dlp.YoutubeDL(dl_opts) as ydl:
+            ydl.download([url])
+
             
             # إرسال الفيديو للمستخدم
             await update.message.reply_video(video=open('video.mp4', 'rb'))
@@ -40,4 +41,5 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     app.run_polling()
+
 
